@@ -1,20 +1,21 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Type } from 'class-transformer';
-import { Pagamento } from './entities/pagamentos.entity';
+import { Setor } from './setores/entities/setores.entity';
+import { SetorModule } from './setores/setores.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({ 
+    TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '3456',
+      password: 'root',
       database: 'db_sistemarh',
-      entities: [Pagamento],
+      entities: [Setor],
       synchronize: true,
-    })
+    }),
+    SetorModule,
   ],
   controllers: [],
   providers: [],
