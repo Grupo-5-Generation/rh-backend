@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Funcionarios } from "./funcionarios/entities/funcionarios.entity";
 import { FuncionariosModule } from "./funcionarios/funcionarios.module";
+import { Setor } from './setores/entities/setores.entity';
+import { SetorModule } from './setores/setores.module';
 
 @Module({
   imports: [
@@ -10,11 +12,12 @@ import { FuncionariosModule } from "./funcionarios/funcionarios.module";
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '1234567',
+      password: 'root',
       database: 'db_rh',
-      entities: [Funcionarios],
+      entities: [Setor, Funcionarios],
       synchronize: true,
     }),
+    SetorModule,
     FuncionariosModule,
   ],
   controllers: [],
