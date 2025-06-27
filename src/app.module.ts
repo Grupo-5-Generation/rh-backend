@@ -11,7 +11,7 @@ import { SetorModule } from './setores/setores.module';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'db_sistemarh',
+      database: 'db_rh',
       entities: [Setor],
       synchronize: true,
     }),
