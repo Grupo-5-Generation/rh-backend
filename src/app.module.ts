@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Setor } from './setores/entities/setores.entity';
+import { SetorModule } from './setores/setores.module';
 
 @Module({
   imports: [
@@ -10,9 +12,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'db_rh',
-      entities: [],
+      entities: [Setor],
       synchronize: true,
     }),
+    SetorModule,
   ],
   controllers: [],
   providers: [],
