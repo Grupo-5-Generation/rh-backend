@@ -29,10 +29,10 @@ export class FuncionariosController {
         return this.funcionariosService.findById(id);
     }
 
-    @Get('/titulo/:titulo')
+    @Get('/nome/:nome')
     @HttpCode(HttpStatus.OK)
-    findByAllTitulo(@Param('titulo') titulo: string): Promise<Funcionarios[]> {
-        return this.funcionariosService.findAllByTitulo(titulo);
+    findByAllNome(@Param('nome') nome: string): Promise<Funcionarios[]> {
+        return this.funcionariosService.findAllByNome(nome);
     }
 
     @Post()
