@@ -18,7 +18,7 @@ export class Funcionarios {
     cpf: string
 
     @IsNotEmpty()
-    @Column('decimal', { precision: 8, scale: 2, nullable: false })
+    @Column('decimal', { precision: 19, scale: 4, nullable: false })
     salario: number;
 
     @UpdateDateColumn()

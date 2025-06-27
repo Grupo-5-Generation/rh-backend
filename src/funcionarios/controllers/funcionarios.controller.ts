@@ -47,6 +47,7 @@ export class FuncionariosController {
         return this.funcionariosService.update(funcionarios);
     }
 
+
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     delete(@Param('id', ParseIntPipe) id: number) {

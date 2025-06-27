@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, ILike, Repository } from "typeorm";
@@ -26,7 +26,7 @@ export class FuncionariosService {
             where: {
                 id,
             },
-            
+
         });
 
         if (!funcionarios)
@@ -38,7 +38,7 @@ export class FuncionariosService {
     async findAllByNome(nome: string): Promise<Funcionarios[]> {
         return await this.funcionariosRepository.find({
             where: {
-                nome : ILike(`%${nome}%`)
+                nome: ILike(`%${nome}%`)
             },
         })
     }
@@ -54,6 +54,20 @@ export class FuncionariosService {
 
         return await this.funcionariosRepository.save(funcionarios);
     }
+
+    // async calculoSalario(salario: number): Promise<Funcionarios> {
+    //     const percentual = 0.10;
+    //     const salarioBruto = salario;
+    //     const salarioliquido = salario - (salario * percentual);
+
+    //     const funcionario: Funcionarios = {
+    //         salarioBruto: salario,
+    //         salarioLiquido: salarioliquido,
+    //     };
+
+    //     return await this.funcionariosRepository.save(funcionario);
+    // }
+
 
     async delete(id: number): Promise<DeleteResult> {
         await this.findById(id)
