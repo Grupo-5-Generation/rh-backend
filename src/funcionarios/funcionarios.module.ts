@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { FuncionariosController } from './app.controller';
 import { AppService } from './app.service';
 
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forFeature([Funcionarios])],
   controllers: [FuncionariosController],
   providers: [FuncionariosServices],
 })
