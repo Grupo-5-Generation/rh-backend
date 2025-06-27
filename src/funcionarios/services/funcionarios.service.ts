@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, ILike, Repository } from "typeorm";
@@ -23,11 +24,9 @@ export class FuncionariosService {
     async findById(id: number): Promise<Funcionarios> {
         const funcionarios = await this.funcionariosRepository.findOne({
             where: {
-                id
+                id,
             },
-            // relations:{
-            //     tema: true
-            // }
+            
         });
 
         if (!funcionarios)
@@ -36,21 +35,17 @@ export class FuncionariosService {
         return funcionarios;
     }
 
-    async findAllByNome(nome: string): Promise<Funcionarios[]>{
-        return await this.funcionarioRepository.find({
-            where:{
-                titulo: ILike(`%${nome}%`)
+    async findAllByNome(nome: string): Promise<Funcionarios[]> {
+        return await this.funcionariosRepository.find({
+            where: {
+                nome : ILike(`%${nome}%`)
             },
-            relations:{
-                tema: true
-            }
         })
     }
 
-    // async create(funcionarios: Funcionarios): Promise<Funcionarios> {
-    //     await this.temaService.findById(postagem.tema.id) 
-    //     return await this.postagemRepository.save(postagem);
-    // }
+    async create(funcionarios: Funcionarios): Promise<Funcionarios> {
+        return await this.funcionariosRepository.save(funcionarios);
+    }
 
     async update(funcionarios: Funcionarios): Promise<Funcionarios> {
         await this.findById(funcionarios.id)

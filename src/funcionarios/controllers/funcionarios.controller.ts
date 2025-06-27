@@ -1,8 +1,19 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
-import { Funcionarios } from "../../entities/funcionarios.entity";
-import { FuncionariosService } from "../services/funcionarios.service";
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Param,
+    ParseIntPipe,
+    Post,
+    Put,
+} from '@nestjs/common';
+import { Funcionarios } from '../entities/funcionarios.entity';
+import { FuncionariosService } from '../services/funcionarios.service';
 
-@Controller("/funcionarios")
+@Controller('/funcionarios')
 export class FuncionariosController {
     constructor(private readonly funcionariosService: FuncionariosService) { }
 
@@ -26,13 +37,13 @@ export class FuncionariosController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    create(@Body() funcionarios: funcionarios): Promise<Funcionarios> {
+    create(@Body() funcionarios: Funcionarios): Promise<Funcionarios> {
         return this.funcionariosService.create(funcionarios);
     }
 
     @Put()
     @HttpCode(HttpStatus.OK)
-    update(@Body() funcionarios: funcionarios): Promise<Funcionarios> {
+    update(@Body() funcionarios: Funcionarios): Promise<Funcionarios> {
         return this.funcionariosService.update(funcionarios);
     }
 
