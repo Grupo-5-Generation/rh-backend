@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Usuario } from "../../usuario/entities/usuario.entity";
 
 @Entity({ name: "tb_funcionarios" })
 
@@ -27,8 +28,8 @@ export class Funcionarios {
     @UpdateDateColumn()
     data_admissao: Date
 
-    // @ManyToOne(() => Tema, (tema) => tema.postagem, {
-    //     onDelete: "CASCADE"
-    // })
-    // tema: Tema
+    @ManyToOne(() => Usuario, (usuario) => usuario.funcionario {
+        onDelete: "CASCADE"
+    })
+    usuario: Usuario
 }
