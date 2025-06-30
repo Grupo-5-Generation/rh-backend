@@ -1,6 +1,7 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ILike, DeleteResult } from 'typeorm';
+import { FuncionariosService } from 'src/funcionarios/services/funcionarios.service';
+import { DeleteResult, ILike, Repository } from 'typeorm';
 import { Usuario } from '../entities/usuario.entity';
 
 @Injectable()
@@ -8,10 +9,15 @@ export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
-  ) {}
+    private funcionariosService: FuncionariosService,
+  ) { }
 
   async findAll(): Promise<Usuario[]> {
-    return await this.usuarioRepository.find({});
+    return await this.usuarioRepository.find({
+      relations: {
+        funcionarios: true,
+      },
+    });
   }
 
   async findById(id: number): Promise<Usuario> {
@@ -40,6 +46,7 @@ export class UsuarioService {
 
   async update(usuario: Usuario): Promise<Usuario> {
     await this.findById(usuario.id);
+    await this.funcionariosService.findById(usuario.funcionarios.id);
     return await this.usuarioRepository.save(usuario);
   }
 

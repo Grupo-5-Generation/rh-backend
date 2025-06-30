@@ -61,7 +61,7 @@ export class FuncionariosService {
 
   async calculoSalario(id: number): Promise<Funcionarios> {
     const funcionario: Funcionarios = await this.findById(id);
-    funcionario.salario = funcionario.salario + funcionario.salario * 0.1;
+    funcionario.salario = funcionario.salario + (funcionario.salario * 0.1);
 
     return await this.funcionariosRepository.save(funcionario);
   }
