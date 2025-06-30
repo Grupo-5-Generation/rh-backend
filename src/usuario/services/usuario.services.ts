@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FuncionariosService } from 'src/funcionarios/services/funcionarios.service';
 import { DeleteResult, ILike, Repository } from 'typeorm';
 import { Usuario } from '../entities/usuario.entity';
 
@@ -9,14 +8,12 @@ export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
-    private funcionariosService: FuncionariosService,
+  
   ) { }
 
   async findAll(): Promise<Usuario[]> {
     return await this.usuarioRepository.find({
-      relations: {
-        funcionarios: true,
-      },
+    
     });
   }
 
@@ -46,7 +43,6 @@ export class UsuarioService {
 
   async update(usuario: Usuario): Promise<Usuario> {
     await this.findById(usuario.id);
-    await this.funcionariosService.findById(usuario.funcionarios.id);
     return await this.usuarioRepository.save(usuario);
   }
 

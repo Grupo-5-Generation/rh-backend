@@ -12,7 +12,7 @@ export class Setor {
   nome: string;
 
   @OneToMany(() => Funcionarios, (funcionarios) => funcionarios.setor, {
-    onDelete: 'CASCADE',
+   
   })
-  funcionarios: Funcionarios;
+  funcionarios: Funcionarios[];
 }

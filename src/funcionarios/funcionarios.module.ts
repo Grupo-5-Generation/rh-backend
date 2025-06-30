@@ -14,6 +14,6 @@ import { FuncionariosService } from './services/funcionarios.service';
   ],
   controllers: [FuncionariosController],
   providers: [FuncionariosService],
-  exports: [],
+  exports: [FuncionariosService],
 })
 export class FuncionariosModule {}

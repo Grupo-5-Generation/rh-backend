@@ -24,7 +24,7 @@ export class Usuario {
   foto: string;
 
   @OneToMany(() => Funcionarios, (funcionarios) => funcionarios.usuario, {
-    onDelete: 'CASCADE',
+    
   })
-  funcionarios: Funcionarios;
+  funcionarios: Funcionarios[];
 }

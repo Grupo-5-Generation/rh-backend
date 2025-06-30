@@ -3,12 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SetorController } from './controller/setores.controller';
 import { Setor } from './entities/setores.entity';
 import { SetorService } from './services/setores.services';
-import { FuncionariosModule } from '../funcionarios/funcionarios.module';
+
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Setor]), FuncionariosModule],
+  imports: [TypeOrmModule.forFeature([Setor])],
   providers: [SetorService],
   controllers: [SetorController],
-  exports: [],
+  exports: [SetorService],
 })
 export class SetorModule {}
