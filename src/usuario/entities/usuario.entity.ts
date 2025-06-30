@@ -23,6 +23,8 @@ export class Usuario {
   @Column({ length: 255, nullable: false })
   foto: string;
 
-  @OneToMany(() => Funcionarios, (funcionarios) => funcionarios.usuario)
-  funcionarios: Funcionarios[];
+  @OneToMany(() => Funcionarios, (funcionarios) => funcionarios.usuario, {
+    onDelete: 'CASCADE',
+  })
+  funcionarios: Funcionarios;
 }
