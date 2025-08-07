@@ -1,11 +1,11 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsISO8601, IsNotEmpty } from 'class-validator';
 import { Setor } from 'src/setores/entities/setores.entity';
 import {
-    Column,
-    Entity,
-    ManyToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Usuario } from '../../usuario/entities/usuario.entity';
 
@@ -28,7 +28,8 @@ export class Funcionarios {
   @Column('decimal', { precision: 19, scale: 4, nullable: false })
   salario: number;
 
-  @UpdateDateColumn()
+  @Column({ type: 'datetime', nullable: false })
+  @IsISO8601()
   data_nascimento: Date;
 
   @UpdateDateColumn()

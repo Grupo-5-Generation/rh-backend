@@ -8,13 +8,10 @@ export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
-  
-  ) { }
+  ) {}
 
   async findAll(): Promise<Usuario[]> {
-    return await this.usuarioRepository.find({
-    
-    });
+    return await this.usuarioRepository.find({});
   }
 
   async findById(id: number): Promise<Usuario> {
