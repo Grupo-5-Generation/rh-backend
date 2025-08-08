@@ -1,11 +1,11 @@
 import { IsISO8601, IsNotEmpty } from 'class-validator';
 import { Setor } from 'src/setores/entities/setores.entity';
 import {
-    Column,
-    Entity,
-    ManyToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Usuario } from '../../usuario/entities/usuario.entity';
 
