@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsISO8601, IsNotEmpty } from 'class-validator';
 import { Setor } from 'src/setores/entities/setores.entity';
 import {
     Column,
@@ -11,7 +11,7 @@ import { Usuario } from '../../usuario/entities/usuario.entity';
 
 @Entity({ name: 'tb_funcionarios' })
 
-// id, nome, cpf, data_nascimento, data_admissao e salario
+
 export class Funcionarios {
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,10 +25,14 @@ export class Funcionarios {
   cpf: string;
 
   @IsNotEmpty()
-  @Column('decimal', { precision: 19, scale: 4, nullable: false })
+  @Column( {type: 'decimal', precision: 19, scale: 4, nullable: false, transformer: {
+      to: (value: number) => value, // quando salva no banco
+      from: (value: string) => parseFloat(value), // quando lê do banco
+    }, })
   salario: number;
 
-  @UpdateDateColumn()
+  @Column({ type: 'datetime', nullable: false })
+  @IsISO8601()
   data_nascimento: Date;
 
   @UpdateDateColumn()

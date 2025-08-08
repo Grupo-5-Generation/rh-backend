@@ -5,6 +5,7 @@ import { SetorService } from '../../setores/services/setores.services';
 import { UsuarioService } from '../../usuario/services/usuario.services';
 import { Funcionarios } from '../entities/funcionarios.entity';
 
+
 @Injectable()
 export class FuncionariosService {
   constructor(
@@ -59,15 +60,19 @@ export class FuncionariosService {
     return await this.funcionariosRepository.save(funcionarios);
   }
 
+   
   async calculoSalario(id: number): Promise<Funcionarios> {
     const funcionario: Funcionarios = await this.findById(id);
     funcionario.salario = funcionario.salario + (funcionario.salario * 0.10);
 
     return await this.funcionariosRepository.save(funcionario);
   }
+  
+
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findById(id);
     return await this.funcionariosRepository.delete(id);
+  
   }
 }

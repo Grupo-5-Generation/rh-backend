@@ -47,11 +47,12 @@ export class FuncionariosController {
     return this.funcionariosService.update(funcionarios);
   }
 
-  @Put('/:id')
+    @Put('/:id')
   @HttpCode(HttpStatus.OK)
   calculoSalario(@Param('id', ParseIntPipe) id: number): Promise<Funcionarios> {
     return this.funcionariosService.calculoSalario(id);
   }
+  
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number) {
